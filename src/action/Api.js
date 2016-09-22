@@ -19,7 +19,7 @@ export function post(url, object) {
     		'Accept': 'application/json',
     		'Content-Type': 'application/json'
   		},
-  		body: JSON.stringify(object);
+  		body: JSON.stringify(object)
  	}).then(function(response) {
         if (response.code >= 400) {
             throw new Error("Bad response from server");

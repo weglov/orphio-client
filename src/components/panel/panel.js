@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 
 class Panel extends Component {
   static onEnter(nextState, replace) {
-    const login = window.localStorage.getItem('o__token')
-    if (login !== 'admin') {
+    const token = window.localStorage.getItem('o__token')
+    if (!token) {
       replace('/')
     }
   }

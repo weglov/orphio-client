@@ -1,16 +1,18 @@
 import React, { Component, PropTypes } from 'react';
 import { post } from '../../action/Api';
-import { browserHistory } from 'react-router';
 
-class Login extends Component {
+class Signup extends Component {
+	
 	constructor() {
     super()
 	    this.state = {
+		     name: '',
 		     email: '',
 		     password: ''
 		 }
     }
     contextTypes: {
+    	name: PropTypes.string.isRequired,
     	email: PropTypes.string.isRequired,
     	password: PropTypes.string.isRequired,
     	router: PropTypes.object.isRequired
@@ -22,29 +24,28 @@ class Login extends Component {
     }
     // Регестрируем
 	handleSubmit = (e) => {
-		e.preventDefault()
-		    post('login', this.state).then((user) => {
-		    	return user
-		    }).then((user) => {
-	    	if (user.code === 404) {
-	    		// если нет такого пользователя
-	    		browserHistory.push('/signup');
+	    e.preventDefault()
+	    post('users', this.state).then((user) => {
+	    	return user
+	    }).then((user) => {
+	    	if (user.code === 400) {
+	    		// todo проверка на логин
 	    		return false;
-	    	}		
-	    	window.localStorage.clear();
-	    	window.localStorage.setItem('o__token', user.token);
-	    	window.localStorage.setItem('o__email', user.email);
-	    	browserHistory.push('/panel')
+	    	}
+	    	console.log(user);
 	    }).catch((user) => {
-	    	console.log('ошибка ' + user)
+	    	console.log('ошибка' + user)
 	    });
-
+		window.localStorage.clear();
   	}
 	render() {
 		return (
 		<div className='o_login'>
-			<h2>Войти</h2>
+		<h2>Зарегистрироваться</h2>
 			<form className='o_login__form' onSubmit={this.handleSubmit}>
+        	  	<div className='o_login__input'>
+        	  		<input onChange={this.onInputChange} name="name" ref="login"  type='text' placeholder='login'/>
+        	  	</div>
         	  	<div className='o_login__input'>
         	  		<input onChange={this.onInputChange} name="email" ref="email" type="email" placeholder='email'/>
         	  	</div>
@@ -58,4 +59,12 @@ class Login extends Component {
 	}
 };
 
-export default Login;
+export default Signup;
+
+
+// load(e).then((stories) => {
+//             this.setState({
+//                 data: stories.data[0],
+//                 date: moment(stories.data[0].created*1000).format('LT, LL')
+//             });
+//         });
