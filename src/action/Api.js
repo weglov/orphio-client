@@ -1,8 +1,13 @@
 import fetch from 'isomorphic-fetch';
 import Config from '../Config';
 
-export function load(url) {
- 	return fetch(Config.API + `${url}`)
+export function load(url, token) {
+ 	return fetch(Config.API + `${url}`, {
+        method: 'GET',
+        headers: {
+            'x-api-token': token || ''
+        }
+    })
     .then(function(response) {
         if (response.code >= 400) {
             throw new Error("Bad response from server");
@@ -12,12 +17,13 @@ export function load(url) {
 }
 
 
-export function post(url, object) {
+export function post(url, object, token) {
  	return fetch(Config.API + `${url}`, {
  		method: 'POST',
  		headers: {
     		'Accept': 'application/json',
-    		'Content-Type': 'application/json'
+    		'Content-Type': 'application/json',
+            'x-api-token': token
   		},
   		body: JSON.stringify(object)
  	}).then(function(response) {

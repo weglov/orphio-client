@@ -30,7 +30,8 @@ class Login extends Component {
 	    		// если нет такого пользователя
 	    		browserHistory.push('/signup');
 	    		return false;
-	    	}		
+	    	}
+	    	console.log(user);		
 	    	window.localStorage.clear();
 	    	window.localStorage.setItem('o__token', user.token);
 	    	window.localStorage.setItem('o__email', user.email);
