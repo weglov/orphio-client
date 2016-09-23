@@ -1,0 +1,1 @@
+STACK: React + Redux + RethinkDB + Express + socket.io

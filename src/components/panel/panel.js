@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import MistakePage from './m'
 import { load } from '../../action/Api';
+
 
 class Panel extends Component {
   static onEnter(nextState, replace) {
@@ -25,7 +27,7 @@ class Panel extends Component {
   render() {
     return (
     <div className='o_login'>
-      Отлично
+      <MistakePage/>
     </div>
     );
   }
