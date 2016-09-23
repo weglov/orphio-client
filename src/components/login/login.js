@@ -20,22 +20,31 @@ class Login extends Component {
     		[e.target.name]: e.target.value
     	});
     }
-    // Регестрируем
+    componentDidMount() {
+    	const token = window.localStorage.getItem('o__token');
+    	if (token) {
+    		browserHistory.push('/panel');
+    	}
+    }
+    // логин
 	handleSubmit = (e) => {
-		e.preventDefault()
+		e.preventDefault()	    	
+		    
+		    // Выдача токенов если есть такой парень
 		    post('login', this.state).then((user) => {
 		    	return user
 		    }).then((user) => {
-	    	if (user.code === 404) {
-	    		// если нет такого пользователя
-	    		browserHistory.push('/signup');
-	    		return false;
-	    	}
-	    	console.log(user);		
-	    	window.localStorage.clear();
+		    	if (user.code === 404 || user.code === 401) {
+		    		// если нет такого пользователя
+		    		browserHistory.push('/signup');
+		    		return Promise.reject();
+		    	}
+		    window.localStorage.clear();	
 	    	window.localStorage.setItem('o__token', user.token);
 	    	window.localStorage.setItem('o__email', user.email);
-	    	browserHistory.push('/panel')
+	    	browserHistory.push('/panel');
+
+	    	return user;
 	    }).catch((user) => {
 	    	console.log('ошибка ' + user)
 	    });

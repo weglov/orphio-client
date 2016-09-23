@@ -4,14 +4,23 @@ import { load } from '../../action/Api';
 class Panel extends Component {
   static onEnter(nextState, replace) {
     const token = window.localStorage.getItem('o__token');
-    load('users', token)
-      .then((m) => {
-          console.log(m);
+    if (token) {
+      load('users', token)
+        .then((m) => {
+            if (m.status === false) {
+              return Promise.reject();
+            }
+            return m
       })
       .catch((m) => {
-        console.log('ff' + m);
-        replace('/')
-      });
+        window.localStorage.clear();  
+        return replace('/login');
+      })
+    } else {
+      replace('/login');
+    }
+    
+    
   }
   render() {
     return (
