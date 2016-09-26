@@ -8,7 +8,7 @@ html, body {
   text-align: left;
 }
 .o_container {
-  width: 1150px;
+  width: 1050px;
   margin: 0 auto;
   display: block;
   zoom: 1;
@@ -19,7 +19,7 @@ html, body {
     padding: 22px 0;
     color: white;
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 0px;
     height: 70px;
     box-sizing: border-box;
   &--logo {
@@ -52,5 +52,35 @@ html, body {
     font-size: 8rem;
     font-weight: bold;
     padding: 1rem;
+  }
+}
+
+.o_panel {
+  padding-top: 25px;
+}
+
+.o_mistake__container {
+  width: 750px;
+}
+
+
+.o_mistake {
+  position: relative;
+  padding: 10px 10px 10px 50px;
+  &:nth-child(odd) {
+    background: #f3f6fb;
+  }
+  &__title {
+    position: relative;
+    a {
+      font-weight: bold;
+      text-decoration: none;
+    }
+  }
+  &__mis {
+    strong {
+      color: red;
+      font-weight: bold;
+    }
   }
 }

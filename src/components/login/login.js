@@ -39,7 +39,6 @@ class Login extends Component {
 		    		browserHistory.push('/signup');
 		    		return Promise.reject();
 		    	}
-		    window.localStorage.clear();	
 	    	window.localStorage.setItem('o__token', user.token);
 	    	window.localStorage.setItem('o__email', user.email);
 	    	browserHistory.push('/panel');
