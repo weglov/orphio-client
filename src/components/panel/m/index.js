@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { load } from '../../../action/Api';
 import io from 'socket.io-client';
 import MistakeItem from "./mistake_item";
-const socket = io('http://localhost:888/')
+const socket = io('http://78.155.218.217:888/');
 
 class MistakePage extends Component {
   constructor(props, context){
@@ -15,10 +15,11 @@ class MistakePage extends Component {
   componentDidMount() {
     this.loadMistake();
     socket.on('m', (change) => {
+      console.log(change);
       if (!change.old_val) {
-        // this.setState({
-        //   data: [change.new_val, ...this.state.data]
-        // });
+        this.setState({
+          data: [change.new_val, ...this.state.data]
+        });
         console.log('1', change.new_val);
       } else if (!change.new_val) {
         console.log('2', change.old_val);
@@ -28,14 +29,13 @@ class MistakePage extends Component {
     });
   }
   loadMistake() {
-    load('m/ren.tv', this.props.token).then((m) => {
+    load('m/?resource=ren.tv&offset=0&count=30', this.props.token).then((m) => {
       this.setState({
         data:m 
       });
     });
   }
   render() {
-    console.log(this.state.data);
     var mistakes = this.state.data.map((nodes, i) => {
              return (<MistakeItem key={i} data={nodes} />);
         });

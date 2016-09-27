@@ -1,19 +1,24 @@
 body {
-  font-family: 'Open Sans', sans-serif;
+    font-family: 'Open Sans', sans-serif;
 }
-html, body {
-  font-size: 16px;
+
+html,
+body {
+    font-size: 16px;
 }
+
 .o_app {
-  text-align: left;
+    text-align: left;
 }
+
 .o_container {
-  width: 1050px;
-  margin: 0 auto;
-  display: block;
-  zoom: 1;
-  position: relative;
+    width: 1050px;
+    margin: 0 auto;
+    display: block;
+    zoom: 1;
+    position: relative;
 }
+
 .o__header {
     background-color: #f3f6fb;
     padding: 22px 0;
@@ -22,65 +27,162 @@ html, body {
     margin-bottom: 0px;
     height: 70px;
     box-sizing: border-box;
-  &--logo {
-    background: url(image/logo.svg) no-repeat;
-    height: 25px;
-    fill: #fff;
-    width: 130px;
-    display: block;
-    margin: 0 auto;
-  }
-  &_menu {
-    right: 0;
-    position: absolute;
-    top: 5px;
-    a {
-      display: inline-block;
-      vertical-align: top;
-      margin: 0 0 0 15px;
-      color: #000;
-      font-weight: 400;
-      text-decoration: none;
+    &--logo {
+        background: url(image/logo.svg) no-repeat;
+        height: 25px;
+        fill: #fff;
+        width: 130px;
+        display: block;
+        margin: 0 auto;
     }
-  }
+    &_menu {
+        right: 0;
+        position: absolute;
+        top: 5px;
+        a {
+            display: inline-block;
+            vertical-align: top;
+            margin: 0 0 0 15px;
+            color: #000;
+            font-weight: 400;
+            text-decoration: none;
+        }
+    }
 }
 
-
 .o_404 {
-  text-align: center;
-  h1 {
-    font-size: 8rem;
-    font-weight: bold;
-    padding: 1rem;
-  }
+    text-align: center;
+    h1 {
+        font-size: 8rem;
+        font-weight: bold;
+        padding: 1rem;
+    }
 }
 
 .o_panel {
-  padding-top: 25px;
+    padding-top: 25px;
 }
 
 .o_mistake__container {
-  width: 750px;
+    width: 750px;
 }
 
-
 .o_mistake {
-  position: relative;
-  padding: 10px 10px 10px 50px;
-  &:nth-child(odd) {
-    background: #f3f6fb;
-  }
-  &__title {
     position: relative;
-    a {
-      font-weight: bold;
-      text-decoration: none;
+    padding: 0;
+    display: table;
+    width: 100%;
+    padding: 10px 0px;
+    box-sizing: border-box;
+    border-bottom: 1px solid #eee;
+    &__check {
+        display: table-cell;
+        vertical-align: middle;
+        width: 40px;
+        padding: 10px;
+        box-sizing: border-box;
     }
-  }
-  &__mis {
-    strong {
-      color: red;
-      font-weight: bold;
+    &__header {
+        display: table-cell;
+        vertical-align: middle;
     }
-  }
+    &__setting {
+        display: table-cell;
+        vertical-align: middle;
+        width: 100px;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    &:nth-child(odd) {}
+    &:hover {
+        background: #fefaf2;
+        cursor: pointer;
+    }
+    &__title {
+        position: relative;
+        font-weight: 600;
+        font-size: 1rem;
+        line-height: 1.5;
+        a {
+            color: #000;
+            text-decoration: none;
+        }
+    }
+    &__mis {
+        font-size: .8rem;
+        line-height: 1.5;
+        strong {
+            color: red;
+            font-weight: 500;
+        }
+    }
+    &__time {
+        font-weight: 300;
+        font-size: 0.7rem;
+        text-align: right;
+    }
+}
+
+.control {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 18px;
+    input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+    &__indicator {
+        position: absolute;
+        top: -10px;
+        left: 0;
+        height: 20px;
+        width: 20px;
+        background: #e6e6e6;
+    }
+}
+
+.control:hover input ~ .control__indicator,
+.control input:focus ~ .control__indicator {
+    background: #ccc;
+}
+
+.control input:checked ~ .control__indicator {
+    background: #2aa1c0;
+}
+
+.control:hover input:not([disabled]):checked ~ .control__indicator,
+.control input:checked:focus ~ .control__indicator {
+    background: #0e647d;
+}
+
+.control input:disabled ~ .control__indicator {
+    background: #e6e6e6;
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.control__indicator:after {
+    content: '';
+    position: absolute;
+    display: none;
+}
+
+.control input:checked ~ .control__indicator:after {
+    display: block;
+}
+
+.control--checkbox .control__indicator:after {
+    left: 8px;
+    top: 4px;
+    width: 3px;
+    height: 8px;
+    border: solid #fff;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+.control--checkbox input:disabled ~ .control__indicator:after {
+    border-color: #7b7b7b;
 }
