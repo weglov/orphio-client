@@ -6,17 +6,26 @@ class MistakeItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      check: this.props.check
+      check: this.props.check,
+      date: moment(this.props.data.timestamp).fromNow()
     }
   }
   onChange = (e) => {
     this.setState({
-      check: true 
+      check: true
     });
+  }
+  componentDidMount() {
+    // 3 min for update
+    setInterval(() => { 
+      this.setState({
+        date: moment(this.props.data.timestamp).fromNow()
+      });
+    }, 180000);
   }
   render() {
     var data = this.props.data;
-    let created = moment(data.timestamp).fromNow();
+    let created = this.state.date;
     return (
     <div className='o_mistake'>
       <div className={'o_mistake__check--' + data.check + ' o_mistake__check'}>
