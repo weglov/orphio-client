@@ -28,8 +28,7 @@ class Login extends Component {
     }
     // логин
 	handleSubmit = (e) => {
-		e.preventDefault()	    	
-		    
+		e.preventDefault()	
 		    // Выдача токенов если есть такой парень
 		    post('login', this.state).then((user) => {
 		    	return user
@@ -42,7 +41,6 @@ class Login extends Component {
 	    	window.localStorage.setItem('o__token', user.token);
 	    	window.localStorage.setItem('o__email', user.email);
 	    	browserHistory.push('/panel');
-
 	    	return user;
 	    }).catch((user) => {
 	    	console.log('ошибка ' + user)

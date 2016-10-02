@@ -7,29 +7,29 @@ const token = window.localStorage.getItem('o__token');
 class Panel extends Component {
   constructor(props) {
     super(props);
-    this.token = window.localStorage.getItem('o__token');
   }
   static onEnter(nextState, replace) {
-    console.log('Проверка');
-  }
-  Authorization() {
+    var token = window.localStorage.getItem('o__token');
     if (token) {
       load('users', token)
         .then((m) => {
             if (m.status === false) {
+
               return Promise.reject();
             }
             return m;
       })
       .catch((m) => {
+        window.localStorage.clear();
         return browserHistory.push('/login');
       })
     } else {
-      browserHistory.push('/login');
+      window.localStorage.clear();
+      replace('/login');
     } 
   }
   componentWillMount() { 
-    this.Authorization()
+    // this.Authorization()
   }
   render() {
     return (
