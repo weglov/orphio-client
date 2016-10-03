@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { post } from '../../action/Api';
+import { post } from '../../actions/Api';
 import { browserHistory } from 'react-router';
 
 class Login extends Component {
@@ -40,6 +40,7 @@ class Login extends Component {
 		    	}
 	    	window.localStorage.setItem('o__token', user.token);
 	    	window.localStorage.setItem('o__email', user.email);
+	    	window.localStorage.setItem('o__id', user.id);
 	    	browserHistory.push('/panel');
 	    	return user;
 	    }).catch((user) => {

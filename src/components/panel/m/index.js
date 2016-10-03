@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { load } from '../../../action/Api';
+import { load } from '../../../actions/Api';
 import io from 'socket.io-client';
 import MistakeItem from "./mistake_item";
 const socket = io('http://78.155.218.217:888/');

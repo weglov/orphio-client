@@ -1,17 +1,15 @@
 import React, { Component } from 'react';
 import MistakePage from './m';
 import { browserHistory } from 'react-router';
-import { load } from '../../action/Api';
+import { load } from '../../actions/Api';
 const token = window.localStorage.getItem('o__token');
 
 class Panel extends Component {
-  constructor(props) {
-    super(props);
-  }
   static onEnter(nextState, replace) {
     var token = window.localStorage.getItem('o__token');
+    var id = window.localStorage.getItem('o__id');
     if (token) {
-      load('users', token)
+      load('users/' + id, token)
         .then((m) => {
             if (m.status === false) {
 

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { post } from '../../action/Api';
+import { post } from '../../actions/Api';
 
 class Signup extends Component {
 	
