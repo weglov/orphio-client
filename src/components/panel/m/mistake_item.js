@@ -15,7 +15,7 @@ class MistakeItem extends Component {
       check: true
     });
   }
-  componentDidMount() {
+  componentWillMount() {
     // 3 min for update
     setInterval(() => { 
       this.setState({

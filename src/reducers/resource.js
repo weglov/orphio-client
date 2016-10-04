@@ -6,10 +6,9 @@ const initialState = {
     token: ''
   }
 
-export function authorization(state = initialState, action) {
+export default function authorization(state = initialState, action) {
   switch (action.type) {
     case AUTHORIZATION:
-      console.log(action);
       return {
           ...state,
           id: action.id,

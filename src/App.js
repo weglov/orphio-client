@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Header from "./components/header/"
+import Wrap from "./containers/wrap"
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import * as orphioActions from './actions'
@@ -11,8 +12,8 @@ class App extends Component {
   render() {
     return (
       <div className="o_app">
-        <Header actions={this.props.actions}/>
-        {this.props.children}
+        <Header data={this.props.login} actions={this.props.actions}/>
+        <Wrap data={this.props.children}/>
       </div>
     );
   }
@@ -22,7 +23,7 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    login: state
+    login: state.login
   }
 }
 
