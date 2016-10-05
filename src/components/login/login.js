@@ -1,6 +1,8 @@
-import React, { Component, PropTypes } from 'react';
-import { post } from '../../actions/Api';
-import { browserHistory } from 'react-router';
+import React, { Component, PropTypes } from 'react'
+import { post } from '../../actions/Api'
+import { connect } from 'react-redux'
+import  { login, logout } from '../../actions'
+import { browserHistory } from 'react-router'
 
 class Login extends Component {
 	constructor() {
@@ -41,9 +43,11 @@ class Login extends Component {
 	    	window.localStorage.setItem('o__token', user.token);
 	    	window.localStorage.setItem('o__email', user.email);
 	    	window.localStorage.setItem('o__id', user.id);
+	    	this.props.login(user)
 	    	browserHistory.push('/panel');
 	    	return user;
 	    }).catch((user) => {
+	    	this.props.logout(user)
 	    	console.log('ошибка ' + user)
 	    });
 
@@ -66,4 +70,11 @@ class Login extends Component {
 	}
 };
 
-export default Login;
+function mapStateToProps(state) {
+  return { index: state.login }
+}
+
+
+
+export default connect(mapStateToProps, {login, logout})(Login)
+

@@ -1,2 +1,2 @@
-export const AUTHORIZATION = 'AUTHORIZATION'
+export const LOGIN = 'LOGIN'
 export const LOGOUT = 'LOGOUT'

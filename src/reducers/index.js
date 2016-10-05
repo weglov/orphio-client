@@ -2,7 +2,10 @@ import { combineReducers } from 'redux'
 import login from './login'
 import resource from './resource'
 
-export default combineReducers({
+
+const rootReducer = combineReducers({
   login,
   resource
 })
+
+export default rootReducer

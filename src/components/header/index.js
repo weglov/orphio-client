@@ -11,14 +11,15 @@ class Header extends Component {
     window.localStorage.clear();
   }
   render() {
+    const {login} = this.props.data;
     return (
         <div className="o__header">
         	<div className="o_container">
 	          	<Link to='/panel' className="o__header--logo"></Link>
 	          	<div className="o__header_menu">
-	          		<Link to='/login'>Войти</Link>
-	      			  <Link to='/signup'>Регистрация</Link>
-                <Link to='/login' onClick={this.appLogout}>Выйти</Link>
+	          		{login || <Link to='/login'>Войти</Link>}
+	      			  {login || <Link to='/signup'>Регистрация</Link>}
+                {!login ||<Link to='/login' onClick={this.appLogout}>Выйти</Link>}
 	          	</div>
           	</div>
         </div>

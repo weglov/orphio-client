@@ -1,6 +1,16 @@
 import * as types from '../constants/ActionTypes'
 
-export const login = (id, email, token) => ({ 
-		type: types.AUTHORIZATION, id, email, token
-	})
 
+export function login(user) {
+  return {
+    type: types.LOGIN,
+    user
+  }
+}
+
+export function logout(user) {
+  return {
+    type: types.LOGOUT,
+    user
+  }
+}
