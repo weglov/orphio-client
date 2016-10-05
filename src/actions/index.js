@@ -14,3 +14,10 @@ export function logout(user) {
     user
   }
 }
+
+export function authorization(user) {
+  return {
+    type: types.AUTHORIZATION,
+    user
+  }
+}
