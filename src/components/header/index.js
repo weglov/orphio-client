@@ -9,6 +9,7 @@ class Header extends Component {
     }
   appLogout = (e) => {
     window.localStorage.clear();
+    this.props.actions.logout();
   }
   render() {
     const {login} = this.props.data;
