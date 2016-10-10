@@ -19,7 +19,6 @@ export default function login(state = initialState, action) {
         }
     case LOGOUT:
         return {
-          ...state,
           initialState
         }
     case AUTHORIZATION:

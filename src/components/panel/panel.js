@@ -3,7 +3,7 @@ import MistakePage from './m';
 import { browserHistory } from 'react-router';
 import { load } from '../../actions/Api';
 import { connect } from 'react-redux'
-import  { authorization } from '../../actions'
+import  { authorization, resourceAll } from '../../actions'
 const token = window.localStorage.getItem('o__token');
 
 class Panel extends Component {
@@ -42,14 +42,17 @@ class Panel extends Component {
   render() {
     return (
     <div className='o_panel'>
-      <MistakePage token={token} />
+      <MistakePage token={token} action={resourceAll} />
     </div>
     );
   }
 };
 
 function mapStateToProps(state) {
-  return { index: state.authorization }
+  return { 
+  authorization,
+  resourceAll
+  }
 }
 
 

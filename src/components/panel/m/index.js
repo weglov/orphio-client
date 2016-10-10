@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ResourcesBlock from '../block/resources';
 import { load } from '../../../actions/Api';
 import io from 'socket.io-client';
 import MistakeItem from "./mistake_item";
@@ -43,6 +44,9 @@ class MistakePage extends Component {
     <div className='o_container'>
       <div className="o_mistake__container">
         {mistakes}
+      </div>
+      <div className="o_sidebar">  
+        <ResourcesBlock action={this.props.action}/>
       </div>
     </div>
     );

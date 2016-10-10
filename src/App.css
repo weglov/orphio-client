@@ -1,4 +1,8 @@
-$blue: #1071ff;
+$blue: #5e9af5; /* Синий */
+$bg:  #eaecf2; /* Фон  */
+$black: #32343c; /* Черный */
+
+
 body {
     font-family: 'Open Sans', sans-serif;
 }
@@ -21,7 +25,7 @@ body {
 }
 
 .o__header {
-    background-color: #f3f6fb;
+    background-color: $bg;
     padding: 22px 0;
     color: white;
     text-align: center;
@@ -34,7 +38,7 @@ body {
         fill: #fff;
         width: 130px;
         display: block;
-        margin: 0 auto;
+        margin: 0;
     }
     &_menu {
         right: 0;
@@ -67,7 +71,14 @@ body {
 .o_mistake__container {
     width: 750px;
 }
-
+.o_sidebar {
+    width: 260px;
+    position: absolute;
+    right: 0;
+    min-height: 500px;
+    border-left: 1px solid #eeeeee;
+    top: 0;
+}
 .o_mistake {
     position: relative;
     padding: 0;
@@ -186,4 +197,12 @@ body {
 
 .control--checkbox input:disabled ~ .control__indicator:after {
     border-color: #7b7b7b;
+}
+
+.o_ResourcesBlock {
+    box-sizing: border-box;
+    padding: 20px;
+    h3 {
+        text-align: center;
+    }
 }
