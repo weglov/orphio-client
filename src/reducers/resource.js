@@ -1,4 +1,4 @@
-import { LOAD_RESOURCE } from '../constants/ActionTypes'
+import { LOAD_RESOURCE, ADD_RESOURCE } from '../constants/ActionTypes'
 
 
 const initialState = {
@@ -15,6 +15,11 @@ export default function resource(state = initialState, action) {
           ...state,
           resource: action.resource
         }
+    case ADD_RESOURCE:
+      return {
+          ...state,
+          resource: action.resource
+      }
     default:
       return state
   }

@@ -1,4 +1,7 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import ResourceAdd from './add_resource'
+import { connect } from 'react-redux'
+import  { resourceAdd } from '../../../actions'
 
 class Resource extends Component {
   constructor(props) {
@@ -12,13 +15,25 @@ class Resource extends Component {
   }
   render() {
     return (
-    <div className='o_ResourcesBlock'>
-      <header>
-        <h3>Ресурсы</h3>
-      </header>
+    <div className='o_resource'>
+      <div className='o_container'>
+        <header>
+          <h1>Ресурсы</h1>
+        </header>
+        <ResourceAdd action={this.props.resourceAdd}/>
+      </div>
     </div>
     );
   }
 };
 
-export default Resource;
+
+function mapStateToProps(state) {
+  return { 
+  resourceAdd
+  }
+}
+
+
+
+export default connect(mapStateToProps)(Resource)

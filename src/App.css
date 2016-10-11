@@ -20,6 +20,7 @@ body {
     width: 1050px;
     margin: 0 auto;
     display: block;
+    padding: 0;
     zoom: 1;
     position: relative;
 }
@@ -47,7 +48,7 @@ body {
         a {
             display: inline-block;
             vertical-align: top;
-            margin: 0 0 0 15px;
+            margin: 0 0 0 30px;
             color: #fff;
             font-weight: 400;
             text-decoration: none;
@@ -204,5 +205,23 @@ body {
     padding: 20px;
     h3 {
         text-align: center;
+    }
+}
+
+.o_resource {
+    h1 {
+        font-size: 3rem;
+        text-align: center;
+        color: $black;
+        font-weight: bold;
+    }
+}
+
+.o_settings {
+    h1 {
+        font-size: 3rem;
+        text-align: center;
+        color: $black;
+        font-weight: bold;
     }
 }
