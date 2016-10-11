@@ -34,9 +34,6 @@ function resourceLoad(user, resource) {
 
 
 export function resourceAll(user) {
-  return dispatch => {
-    return load(`/resource/self/${user}`)
-      .then(response => response.json())
-      .then(json => dispatch(resourceLoad(user, json)))
-  }
+    return load(`resource/self/${user}`)
+      .then(json => resourceLoad(user, json))
 }

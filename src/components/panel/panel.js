@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
-import MistakePage from './m';
 import { browserHistory } from 'react-router';
 import { load } from '../../actions/Api';
 import { connect } from 'react-redux'
 import  { authorization, resourceAll } from '../../actions'
-const token = window.localStorage.getItem('o__token');
 
 class Panel extends Component {
   constructor() {
@@ -20,7 +18,7 @@ class Panel extends Component {
       replace('/login')
     }
   }
-  componentWillMount() {
+  componentDidMount() {
     load('users/' + this.state.id, this.state.token)
       .then(function(user) {
           if (user.status === false) {
@@ -42,7 +40,7 @@ class Panel extends Component {
   render() {
     return (
     <div className='o_panel'>
-      <MistakePage token={token} action={resourceAll} />
+        {this.props.children}
     </div>
     );
   }

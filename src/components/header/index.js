@@ -20,6 +20,8 @@ class Header extends Component {
 	          	<div className="o__header_menu">
 	          		{login || <Link to='/login'>Войти</Link>}
 	      			  {login || <Link to='/signup'>Регистрация</Link>}
+                {!login ||<Link to='/panel/resource' >Ресурсы</Link>}
+                {!login ||<Link to='/panel/settings' >Настройки</Link>}
                 {!login ||<Link to='/login' onClick={this.appLogout}>Выйти</Link>}
 	          	</div>
           	</div>

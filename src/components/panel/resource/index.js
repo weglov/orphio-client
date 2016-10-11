@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class ResourcesBlock extends Component {
+class Resource extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -8,7 +8,6 @@ class ResourcesBlock extends Component {
     }
   }
   componentDidMount() {
-    this.props.action('ren.tv');
 
   }
   render() {
@@ -22,4 +21,4 @@ class ResourcesBlock extends Component {
   }
 };
 
-export default ResourcesBlock;
+export default Resource;

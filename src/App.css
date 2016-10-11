@@ -25,7 +25,7 @@ body {
 }
 
 .o__header {
-    background-color: $bg;
+    background-color: $black;
     padding: 22px 0;
     color: white;
     text-align: center;
@@ -33,10 +33,10 @@ body {
     height: 70px;
     box-sizing: border-box;
     &--logo {
-        background: url(image/logo.svg) no-repeat;
+        background: url(image/logo_w_long.svg) no-repeat;
         height: 25px;
         fill: #fff;
-        width: 130px;
+        width: 170px;
         display: block;
         margin: 0;
     }
@@ -48,7 +48,7 @@ body {
             display: inline-block;
             vertical-align: top;
             margin: 0 0 0 15px;
-            color: #000;
+            color: #fff;
             font-weight: 400;
             text-decoration: none;
         }

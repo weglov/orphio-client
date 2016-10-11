@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import ResourcesBlock from '../block/resources';
 import { load } from '../../../actions/Api';
 import io from 'socket.io-client';
+import { connect } from 'react-redux'
+import  { authorization, resourceAll } from '../../../actions'
 import MistakeItem from "./mistake_item";
 const socket = io('http://78.155.218.217:888/');
 
@@ -46,11 +48,21 @@ class MistakePage extends Component {
         {mistakes}
       </div>
       <div className="o_sidebar">  
-        <ResourcesBlock action={this.props.action}/>
+        <ResourcesBlock action={this.props.resourceAll}/>
       </div>
     </div>
     );
   }
 };
 
-export default MistakePage;
+
+function mapStateToProps(state) {
+  return { 
+  authorization,
+  resourceAll
+  }
+}
+
+
+
+export default connect(mapStateToProps, {authorization})(MistakePage)
