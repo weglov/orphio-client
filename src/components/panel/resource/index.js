@@ -20,7 +20,7 @@ class Resource extends Component {
         <header>
           <h1>Ресурсы</h1>
         </header>
-        <ResourceAdd action={this.props.resourceAdd}/>
+        <ResourceAdd action={this.props.resourceAdd} data={this.props.data}/>
       </div>
     </div>
     );
@@ -30,7 +30,8 @@ class Resource extends Component {
 
 function mapStateToProps(state) {
   return { 
-  resourceAdd
+    resourceAdd,
+    data: state.login
   }
 }
 

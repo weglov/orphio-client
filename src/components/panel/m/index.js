@@ -48,7 +48,7 @@ class MistakePage extends Component {
         {mistakes}
       </div>
       <div className="o_sidebar">  
-        <ResourcesBlock action={this.props.resourceAll}/>
+        <ResourcesBlock action={this.props.resourceAll} login={this.props.login}/>
       </div>
     </div>
     );
@@ -59,7 +59,8 @@ class MistakePage extends Component {
 function mapStateToProps(state) {
   return { 
   authorization,
-  resourceAll
+  resourceAll,
+  login: state.login.id
   }
 }
 

@@ -34,8 +34,8 @@ body {
     height: 70px;
     box-sizing: border-box;
     &--logo {
-        background: url(image/logo_w_long.svg) no-repeat;
-        height: 25px;
+        background: url(image/logo_w_long.svg) no-repeat center center;
+        height: 20px;
         fill: #fff;
         width: 170px;
         display: block;

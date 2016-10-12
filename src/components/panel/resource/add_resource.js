@@ -4,26 +4,39 @@ class ResourceAdd extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      name: '',
+      source: '',
+      access: []
     }
   }
-  componentDidMount() {
-    this.props.action({name: 1, source: 2}, 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJ5YXNjaGVnbG92QHlhLnJ1IiwiZXhwIjoxNDc2ODAwMjUyMzIxfQ.bk0kNzDF8mf7bu4M3jUb2K7PZhLdI-SoV8oseTOXpqQ')
+  onInputChange = (e) => {
+      this.setState({
+        [e.target.name]: e.target.value
+      });
+  }
+  componentWillReceiveProps(next) {
+    this.setState({
+       access: [...this.state.access, next.data.id]  
+     });
+  }
+  onSubmit = (e) => {
+     e.preventDefault();
+     this.props.action(this.state, this.props.data.token) 
   }
   render() {
     return (
-    <div className='o_resource__add'>
+    <div className='o_resource__add' onSubmit={this.onSubmit}>
       <h2>Добавить ресурс</h2>
       <form className='o_form'>
         <div className='o_form__group'>
           <label>Назавание ресурса</label>
-          <input type="text" onChange={this.onInputChange} name="name" maxLength="20" placeholder="Имя" />
+          <input type="text" onChange={this.onInputChange} name="name" value={this.state.name} placeholder="Имя" />
         </div>
         <div className='o_form__group'>
           <label>URL ресурса</label>
-          <input type="text" onChange={this.onInputChange} name="source" maxLength="20" placeholder="http://" />
+          <input type="text" onChange={this.onInputChange} name="source" value={this.state.source} placeholder="http://" />
         </div>
-        <input name="submit" type="submit" value="Добавить" />
+        <input type="submit" value="Добавить" />
       </form>
     </div>
     );

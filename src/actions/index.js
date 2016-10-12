@@ -24,6 +24,7 @@ export function authorization(user) {
 
 
 function resourceLoad(user, resource) {
+  console.log(resource);
   return {
     type: types.LOAD_RESOURCE,
     user,
