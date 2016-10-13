@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes'
-import {load, post} from './Api.js'
+import {load} from './Api.js'
 
 export function login(user) {
   return {
@@ -32,13 +32,7 @@ function resourceLoad(user, resource) {
   }
 }
 
-export function addResource(resource) {
-  return {
-    type: types.ADD_RESOURCE,
-    resource,
-    receivedAt: Date.now()
-  }
-}
+
 
 export function resourceAll(user) {
     return dispatch => {
@@ -47,8 +41,3 @@ export function resourceAll(user) {
     }
 }
 
-
-export function resourceAdd(object, token) {
-    return post(`resource/`, object, token)
-      .then(json => addResource(json))
-}

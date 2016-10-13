@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import { post } from '../../../actions/Api.js'
+
 
 class ResourceAdd extends Component {
   constructor(props) {
@@ -19,13 +21,16 @@ class ResourceAdd extends Component {
        access: [...this.state.access, next.data.id]  
      });
   }
-  onSubmit = (e) => {
+  handleSubmit = (e) => {
      e.preventDefault();
-     this.props.action(this.state, this.props.data.token) 
+     post('resource/', this.state, this.props.data.token)
+      .then(json => {
+        console.log(json);
+      });
   }
   render() {
     return (
-    <div className='o_resource__add' onSubmit={this.onSubmit}>
+    <div className='o_resource__add' onSubmit={this.handleSubmit}>
       <h2>Добавить ресурс</h2>
       <form className='o_form'>
         <div className='o_form__group'>

@@ -1,7 +1,7 @@
 $blue: #5e9af5; /* Синий */
 $bg:  #eaecf2; /* Фон  */
-$black: #32343c; /* Черный */
-
+$black: #424951; /* Черный */
+/*#424951*/
 
 body {
     font-family: 'Open Sans', sans-serif;
@@ -35,9 +35,9 @@ body {
     box-sizing: border-box;
     &--logo {
         background: url(image/logo_w_long.svg) no-repeat center center;
-        height: 20px;
+        height: 25px;
         fill: #fff;
-        width: 170px;
+        width: 140px;
         display: block;
         margin: 0;
     }
@@ -210,10 +210,11 @@ body {
 
 .o_resource {
     h1 {
-        font-size: 3rem;
-        text-align: center;
-        color: $black;
-        font-weight: bold;
+    font-size: 2rem;
+    text-align: left;
+    color: $black;
+    font-weight: 600;
+    padding: 10px 0;
     }
 }
 
@@ -225,3 +226,96 @@ body {
         font-weight: bold;
     }
 }
+
+.o_resource {
+    width: 750px;
+}
+.o_resources {
+    margin: 0 -10px;
+}
+.o_item, .o_resource__add {
+    display: inline-block;
+    height: 188px;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    margin: 10px;
+    vertical-align: top;
+    width: 46%;
+    border: 1px solid #dbdfe2;
+    border-radius: 5px;
+}
+
+.o_resource__add {
+    border: 1px dashed #dbdfe2;
+    min-height: 245px;
+    height: inherit;
+    h2 {
+        font-weight: bold;
+        padding: 10px 0;
+        color:  $black;
+        text-align: center;
+    }
+
+}
+.o_item {
+    position: relative;
+    box-sizing: border-box;
+    &__header {
+        color: green;
+        height: 40px;
+        line-height: 40px;
+        position: relative;
+    }
+    &__content {
+        height: 80px;
+        display: block;
+        position: relative;
+    }
+    &__title {
+        font-size: 2rem;
+    }
+    &__url {
+        display: block;
+        padding: 5px 0;
+        color: #333;
+    }
+    &__footer {
+        position: absolute;
+        bottom: 0;
+        height: 30px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+.o_form {
+    position: relative;
+    box-sizing: border-box;
+    &__group {
+        margin: 10px 0;
+        label {
+            font-size: 12px;
+            padding: 3px 0;
+            color: $black;
+            display: block;
+        }
+    }
+    input {
+        box-sizing: border-box;
+        background: #fff;
+        border-radius: 2px;
+        height: 42px;
+        font-size: 14px;
+        padding: 0 15px;
+        width: 100%;
+        outline: none;
+        border: 1px solid #dbdfe2;
+        color: #424951;
+        &[type=submit] {
+            width: auto;
+            background: $blue;
+            color: #fff;
+            border: 1px solid $blue;
+        }
+    }
+}
+

@@ -18,7 +18,7 @@ export default function resource(state = initialState, action) {
     case ADD_RESOURCE:
       return {
           ...state,
-          resources: [...state.resource, action.resource]
+          resources: action.resource
       }
     default:
       return state
