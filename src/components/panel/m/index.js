@@ -3,7 +3,7 @@ import ResourcesBlock from '../block/resources';
 import { load } from '../../../actions/Api';
 import io from 'socket.io-client';
 import { connect } from 'react-redux'
-import  { authorization, resourceAll } from '../../../actions'
+import  { resourceAll } from '../../../actions'
 import MistakeItem from "./mistake_item";
 const socket = io('http://78.155.218.217:888/');
 
@@ -12,7 +12,9 @@ class MistakePage extends Component {
     super();
     this.state = {
       resource: 'ren.tv',
-      data: []
+      data: [],
+      offset: 0,
+      count: 30
     };
   }
   componentDidMount() {
@@ -32,7 +34,7 @@ class MistakePage extends Component {
     });
   }
   loadMistake() {
-    load('m/?resource=ren.tv&offset=0&count=30', this.props.token).then((m) => {
+    load('m/?resource=ren.tv&offset=' + this.state.offset + '&count=' + this.state.offset, this.props.token).then((m) => {
       this.setState({
         data:m 
       });
@@ -58,7 +60,6 @@ class MistakePage extends Component {
 
 function mapStateToProps(state) {
   return { 
-  authorization,
   resourceAll,
   login: state.login.id
   }
@@ -66,4 +67,4 @@ function mapStateToProps(state) {
 
 
 
-export default connect(mapStateToProps, {authorization})(MistakePage)
+export default connect(mapStateToProps, {resourceAll})(MistakePage)

@@ -24,7 +24,6 @@ export function authorization(user) {
 
 
 function resourceLoad(user, resource) {
-  console.log(resource);
   return {
     type: types.LOAD_RESOURCE,
     user,
@@ -42,9 +41,12 @@ export function addResource(resource) {
 }
 
 export function resourceAll(user) {
-    return load(`resource/self/${user}`)
-      .then(json => resourceLoad(user, json))
+    return dispatch => {
+      return load(`resource/self/${user}`)
+        .then(json => dispatch(resourceLoad(user, json)))
+    }
 }
+
 
 export function resourceAdd(object, token) {
     return post(`resource/`, object, token)

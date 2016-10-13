@@ -14,11 +14,6 @@ class ResourcesBlock extends Component {
         });    
   }
   render() {
-    console.log(this.state.data);
-    // var list = this.state.data.map((e) => {
-    //   console.log(e);
-    //   return 'fff';
-    // })
     return (
     <div className='o_ResourcesBlock'>
       <header>

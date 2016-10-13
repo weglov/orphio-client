@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import { load } from '../../actions/Api';
 import { connect } from 'react-redux'
-import  { authorization, resourceAll } from '../../actions'
+import  { authorization } from '../../actions'
 
 class Panel extends Component {
   constructor() {
@@ -48,8 +48,7 @@ class Panel extends Component {
 
 function mapStateToProps(state) {
   return { 
-  authorization,
-  resourceAll
+    authorization
   }
 }
 
