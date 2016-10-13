@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router';
-import moment from 'moment';
+import React, { Component } from 'react'
+import { Link } from 'react-router'
+import moment from 'moment'
 
 class MistakeItem extends Component {
   constructor(props) {
