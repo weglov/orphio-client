@@ -242,27 +242,29 @@ body {
 }
 
 .o_resource {
+    padding-top: 60px;
+    background: #fff;
+    padding: 60px 20px;
     h1 {
-    font-size: 2rem;
+    font-size: 1rem;
     text-align: left;
-    color: $black;
+    color: #000;
     font-weight: 600;
     padding: 10px 0;
     }
 }
 
 .o_settings {
+    padding-top: 60px;
+    background: #fff;
     h1 {
-        font-size: 3rem;
+        font-size: 2rem;
         text-align: center;
-        color: $black;
+        color: #000;
         font-weight: bold;
     }
 }
 
-.o_resource {
-    width: 750px;
-}
 .o_resources {
     margin: 0 -10px;
 }
@@ -286,7 +288,7 @@ body {
     h2 {
         font-weight: bold;
         padding: 10px 0;
-        color:  $black;
+        color:  #000;
         text-align: center;
     }
 
@@ -304,11 +306,18 @@ body {
         border-radius: 5px;
         position: relative;
         box-sizing: border-box;
+        font-size: 16px;
         &__header {
-            color: green;
+            color: #000;
             height: 40px;
+            font-size: .8rem;
             line-height: 40px;
             position: relative;
+            display: table;
+            width: 100%;
+            div {
+                display: table-cell;
+            }
         }
         &__content {
             height: 80px;

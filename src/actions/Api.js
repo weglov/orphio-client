@@ -26,10 +26,23 @@ export function post(url, object, token) {
             'x-api-token': token
   		},
   		body: JSON.stringify(object)
- 	}).then(function(response) {
+ 	}).then(response => {
         if (response.code >= 400) {
             throw new Error("Bad response from server");
         }
         return response.json();
     })
+}
+
+export function deleteData(url, token) {
+  return fetch(Config.API + `${url}`, {
+    method: 'DELETE',
+    headers: {
+            'x-api-token': token
+    }
+    }).then(response =>
+    response.json().then(json => {
+      return json;
+    })
+  );
 }

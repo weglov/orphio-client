@@ -1,5 +1,8 @@
 export const LOGIN = 'LOGIN'
 export const LOGOUT = 'LOGOUT'
 export const AUTHORIZATION = 'AUTHORIZATION'
+
+
 export const LOAD_RESOURCE = 'LOAD_RESOURCE'
 export const ACTIVE_RESOURCE = 'ACTIVE_RESOURCE'
+export const DELETE_RESOURCE = 'DELETE_RESOURCE'

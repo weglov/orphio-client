@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes'
-import {load} from './Api.js'
+import {load, deleteData} from './Api.js'
 
 export function login(user) {
   return {
@@ -33,10 +33,26 @@ function resourceLoad(user, resource) {
 }
 
 
-export function setActiveResouce(id) {
+export function setActiveResource(id) {
   return {
     type: types.ACTIVE_RESOURCE,
     id
+  }
+}
+
+function deletR(id) {
+  return {
+          type: types.DELETE_RESOURCE,
+          id
+  }
+}
+export function deleteResource(id, sid, token) {
+  console.log(arguments);
+  return dispatch => {
+    return deleteData(`resource/${sid}`, token)
+      .then(json => {
+          dispatch(deletR(id))
+        })
   }
 }
 
@@ -45,7 +61,7 @@ export function resourceAll(user) {
       return load(`resource/self/${user}`)
         .then(json => dispatch(resourceLoad(user, json)))
         .then(json => {
-          dispatch(setActiveResouce(json.resource[0].id))
+          dispatch(setActiveResource(json.resource[0].id))
         })
     }
 }

@@ -3,7 +3,7 @@ import ResourcesBlock from '../block/resources';
 import { load } from '../../../actions/Api';
 import io from 'socket.io-client';
 import { connect } from 'react-redux'
-import  { resourceAll, setActiveResouce } from '../../../actions'
+import  { resourceAll, setActiveResource } from '../../../actions'
 import MistakeItem from "./mistake_item";
 const socket = io('http://78.155.218.217:888/');
 
@@ -57,7 +57,7 @@ class MistakePage extends Component {
     return (
     <div className='o_container'>  
       <div className="o_sidebar">  
-        <ResourcesBlock action={this.props.setActiveResouce} set={this.props.active} data={this.props.resource}/>
+        <ResourcesBlock action={this.props.setActiveResource} set={this.props.active} data={this.props.resource}/>
       </div>
       <div className="o_panel__container">
         <div className="o_mistake__container">
@@ -82,4 +82,4 @@ function mapStateToProps(state) {
 
 
 
-export default connect(mapStateToProps, {resourceAll, setActiveResouce})(MistakePage)
+export default connect(mapStateToProps, {resourceAll, setActiveResource})(MistakePage)

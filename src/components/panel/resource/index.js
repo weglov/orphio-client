@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ResourceAdd from './add_resource'
 import { connect } from 'react-redux'
-import  { resourceAll } from '../../../actions'
+import  { resourceAll, deleteResource } from '../../../actions'
 import ResourceItem from './resource_item';
 
 class Resource extends Component {
@@ -12,11 +12,16 @@ class Resource extends Component {
     }
   }
   componentDidMount() {
-    this.props.resourceAll(this.props.login.id)
+    this.props.resourceAll(this.state.id)
   }
   render() {
     var data = this.props.resources.map((elem, i) => 
-      <ResourceItem key={i} data={this.props.resources[i]} />
+      <ResourceItem 
+        key={i} 
+        token={this.state.id}
+        item={i}  
+        delete={this.props.deleteResource} 
+        data={this.props.resources[i]} />
     )
     return (
       <div className="o_container">
@@ -45,4 +50,4 @@ function mapStateToProps(state) {
 
 
 
-export default connect(mapStateToProps, {resourceAll})(Resource)
+export default connect(mapStateToProps, {resourceAll, deleteResource})(Resource)

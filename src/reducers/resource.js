@@ -1,4 +1,4 @@
-import { LOAD_RESOURCE, ACTIVE_RESOURCE } from '../constants/ActionTypes'
+import { LOAD_RESOURCE, ACTIVE_RESOURCE, DELETE_RESOURCE } from '../constants/ActionTypes'
 
 
 const initialState = {
@@ -20,6 +20,11 @@ export default function resource(state = initialState, action) {
       return {
           ...state,
           active: action.id
+      }
+    case DELETE_RESOURCE:
+      return {
+          ...state,
+          resources: [...state.resources.slice(0, action.id), ...state.resources.slice(action.id + 1)]
       }
     default:
       return state
