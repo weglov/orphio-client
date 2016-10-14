@@ -14,14 +14,13 @@ class MistakePage extends Component {
       resource: 'ren.tv',
       data: [],
       offset: 0,
-      count: 30
+      count: 25
     };
   }
   componentWillMount() {
     this.props.resourceAll(window.localStorage.getItem('o__id'))
-    this.loadMistake();
+    this.loadMistake(this.state.offset, this.state.count);
     socket.on('m', (change) => {
-      console.log(change);
       if (!change.old_val) {
         this.setState({
           data: [change.new_val, ...this.state.data]
@@ -34,10 +33,20 @@ class MistakePage extends Component {
       }
     });
   }
-  loadMistake() {
-    load('m/?resource=ren.tv&offset=' + this.state.offset + '&count=' + this.state.offset, this.props.token).then((m) => {
+  loadMore = (e) => {
+    let offset = this.state.data.length
+    let count = this.state.count
+    load('m/?resource=ren.tv&offset=' + offset + '&count=' + count, this.props.token).then((m) => {
+      m = this.state.data.concat(m);
       this.setState({
-        data:m 
+        data: m
+      });
+    });
+  }
+  loadMistake(offset, count) {
+    load('m/?resource=ren.tv&offset=' + offset + '&count=' + count, this.props.token).then((m) => {
+      this.setState({
+        data:m
       });
     });
   }
@@ -53,6 +62,7 @@ class MistakePage extends Component {
       <div className="o_panel__container">
         <div className="o_mistake__container">
           {mistakes}
+          <button className="o_loadmore" onClick={this.loadMore}>Загрузить еще</button>
         </div>
       </div>
     </div>
