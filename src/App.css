@@ -27,17 +27,24 @@ body {
 
 .o__header {
     background-color: $black;
-    padding: 22px 0;
+    padding: 12px 0;
     color: white;
+    position: fixed;
+    z-index: 200;
+    width: 100%;
     text-align: center;
     margin-bottom: 0px;
-    height: 70px;
+    height: 50px;
     box-sizing: border-box;
+    border-bottom: solid 1px #202327;
+    -webkit-transition: height 200ms ease-in;
+    transition: height 200ms ease-in;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.15);
     &--logo {
         background: url(image/logo_w_long.svg) no-repeat center center;
         height: 25px;
         fill: #fff;
-        width: 140px;
+        width: 110px;
         display: block;
         margin: 0;
     }
@@ -66,38 +73,57 @@ body {
 }
 
 .o_panel {
-    padding-top: 25px;
+    padding-top: 0;
+    background: #fafafa;
 }
 
+.o_panel__container {
+    min-height: 380px;
+    background-color: #fff;
+    padding: 50px 0px 0;
+    margin-left: 286px;
+    border-right: 1px solid #f1f1f1;
+}
 .o_mistake__container {
-    width: 750px;
+    padding: 20px;
+    position: relative;
 }
 .o_sidebar {
-    width: 260px;
-    position: absolute;
-    right: 0;
-    min-height: 500px;
-    border-left: 1px solid #eeeeee;
-    top: 0;
+    float: left;
+    width: 250px;
+    min-height: 100vh;
+    padding-left: 35px;
+    padding-top: 50px;
+    position: fixed;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    border-right: 1px solid #f1f1f1;
+    background-color: #fafafa;
+    -webkit-touch-callout: none !important;
+    -webkit-user-select: none !important;
+    -khtml-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+    user-select: none !important;
 }
 .o_mistake {
     position: relative;
     padding: 0;
     display: table;
     width: 100%;
-    padding: 10px 0px;
     box-sizing: border-box;
-    border-bottom: 1px solid #eee;
     &__check {
         display: table-cell;
-        vertical-align: middle;
+        vertical-align: top;
         width: 40px;
-        padding: 10px;
+        padding: 25px 10px;
         box-sizing: border-box;
     }
     &__header {
         display: table-cell;
         vertical-align: middle;
+        padding: 10px 0px;
+        border-bottom: 1px solid #eee;
     }
     &__setting {
         display: table-cell;
@@ -105,6 +131,7 @@ body {
         width: 100px;
         padding: 10px;
         box-sizing: border-box;
+        border-bottom: 1px solid #eee;
     }
     &:nth-child(odd) {}
     &:hover {
@@ -152,7 +179,9 @@ body {
         left: 0;
         height: 20px;
         width: 20px;
-        background: #e6e6e6;
+        background: #fff;
+        border: 1px solid #c9c9c9;
+        border-radius: 25px;
     }
 }
 

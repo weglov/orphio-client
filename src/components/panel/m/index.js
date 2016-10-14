@@ -45,12 +45,14 @@ class MistakePage extends Component {
              return (<MistakeItem key={i} data={nodes} />);
         });
     return (
-    <div className='o_container'>
-      <div className="o_mistake__container">
-        {mistakes}
-      </div>
+    <div className='o_container'>  
       <div className="o_sidebar">  
         <ResourcesBlock action={this.props.resourceAll} login={this.props.login}/>
+      </div>
+      <div className="o_panel__container">
+        <div className="o_mistake__container">
+          {mistakes}
+        </div>
       </div>
     </div>
     );
