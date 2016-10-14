@@ -33,11 +33,20 @@ function resourceLoad(user, resource) {
 }
 
 
+export function setActiveResouce(id) {
+  return {
+    type: types.ACTIVE_RESOURCE,
+    id
+  }
+}
 
 export function resourceAll(user) {
     return dispatch => {
       return load(`resource/self/${user}`)
         .then(json => dispatch(resourceLoad(user, json)))
+        .then(json => {
+          dispatch(setActiveResouce(json.resource[0].id))
+        })
     }
 }
 

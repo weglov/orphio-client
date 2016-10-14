@@ -1,29 +1,29 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import ResourceList from './resource_list'
+import { connect } from 'react-redux'
+
 
 class ResourcesBlock extends Component {
-  constructor() {
-    super()
-    this.state = {
-       data: [],
-       id: window.localStorage.getItem('o__id')
-    }
-  }
-  componentDidMount() {
-    this.setState({
-          data: this.props.action(this.state.id)  
-        });    
-  }
   render() {
+    var data = this.props.data.map((elem, i) => 
+      <ResourceList active={this.props.active === elem.id} set={this.props.action} className='o_item' key={i} data={elem} />
+    )
     return (
     <div className='o_ResourcesBlock'>
-      <header>
-        <h3>Ресурсы</h3>
-      </header>
-      <div className='o_ResourcesBlock_container'></div>
-        <div className='o_ResourcesBlock_add'></div>
+      <ul className='o_ResourcesBlock_container'>
+        {data}
+      </ul>
     </div>
     );
   }
 };
 
-export default ResourcesBlock;
+function mapStateToProps(state) {
+  return { 
+    active: state.resource.active
+  }
+}
+
+
+
+export default connect(mapStateToProps)(ResourcesBlock)

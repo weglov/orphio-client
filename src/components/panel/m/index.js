@@ -3,7 +3,7 @@ import ResourcesBlock from '../block/resources';
 import { load } from '../../../actions/Api';
 import io from 'socket.io-client';
 import { connect } from 'react-redux'
-import  { resourceAll } from '../../../actions'
+import  { resourceAll, setActiveResouce } from '../../../actions'
 import MistakeItem from "./mistake_item";
 const socket = io('http://78.155.218.217:888/');
 
@@ -17,7 +17,8 @@ class MistakePage extends Component {
       count: 30
     };
   }
-  componentDidMount() {
+  componentWillMount() {
+    this.props.resourceAll(window.localStorage.getItem('o__id'))
     this.loadMistake();
     socket.on('m', (change) => {
       console.log(change);
@@ -47,7 +48,7 @@ class MistakePage extends Component {
     return (
     <div className='o_container'>  
       <div className="o_sidebar">  
-        <ResourcesBlock action={this.props.resourceAll} login={this.props.login}/>
+        <ResourcesBlock action={this.props.setActiveResouce} set={this.props.active} data={this.props.resource}/>
       </div>
       <div className="o_panel__container">
         <div className="o_mistake__container">
@@ -63,10 +64,12 @@ class MistakePage extends Component {
 function mapStateToProps(state) {
   return { 
   resourceAll,
+  active: state.resource.active,
+  resource: state.resource.resources,
   login: state.login.id
   }
 }
 
 
 
-export default connect(mapStateToProps, {resourceAll})(MistakePage)
+export default connect(mapStateToProps, {resourceAll, setActiveResouce})(MistakePage)

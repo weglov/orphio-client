@@ -8,12 +8,11 @@ class Resource extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: this.props.login.id || window.localStorage.getItem('o__id'),
-      resource: []
+      id: this.props.login.id || window.localStorage.getItem('o__id')
     }
   }
   componentDidMount() {
-    this.props.resourceAll(this.state.id)
+    this.props.resourceAll(this.props.login.id)
   }
   render() {
     var data = this.props.resources.map((elem, i) => 
