@@ -82,3 +82,26 @@ export function resourceAdd(state, token) {
     }
 }
 
+// Mistake 
+function _mRequest(resource) {
+  return {
+    type: types.REQUEST_M,
+    resource
+  }
+}
+function _mLoad(resource, m) {
+  return {
+    type: types.LOAD_M,
+    resource,
+    m
+  }
+}
+
+export function mLoad(resource, offset, count, token) {
+    return dispatch => {
+      dispatch(_mRequest(resource))
+      return load('m/?resource='+ resource +'&offset=' + offset + '&count=' + count, token)
+        .then(m => dispatch(_mLoad(resource, m)))
+    }
+}
+

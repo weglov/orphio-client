@@ -3,7 +3,7 @@ import ResourcesBlock from '../block/resources';
 import { load } from '../../../actions/Api';
 import io from 'socket.io-client';
 import { connect } from 'react-redux'
-import  { resourceAll, setActiveResource } from '../../../actions'
+import  { resourceAll, setActiveResource, mLoad } from '../../../actions'
 import MistakeItem from "./mistake_item";
 const socket = io('http://78.155.218.217:888/');
 
@@ -19,7 +19,11 @@ class MistakePage extends Component {
   }
   componentWillMount() {
     this.props.resourceAll(window.localStorage.getItem('o__id'))
-    this.loadMistake(this.state.offset, this.state.count);
+    this.props.mLoad('ren.tv', this.state.offset, this.state.count, this.props.token).then(json => {
+      this.setState({
+        data: json.m 
+      });
+    })
     socket.on('m', (change) => {
       if (!change.old_val) {
         this.setState({
@@ -40,13 +44,6 @@ class MistakePage extends Component {
       m = this.state.data.concat(m);
       this.setState({
         data: m
-      });
-    });
-  }
-  loadMistake(offset, count) {
-    load('m/?resource=ren.tv&offset=' + offset + '&count=' + count, this.props.token).then((m) => {
-      this.setState({
-        data:m
       });
     });
   }
@@ -74,6 +71,8 @@ class MistakePage extends Component {
 function mapStateToProps(state) {
   return { 
   resourceAll,
+  mLoad,
+  data: state.m.m,
   active: state.resource.active,
   resource: state.resource.resources,
   login: state.login.id
@@ -82,4 +81,4 @@ function mapStateToProps(state) {
 
 
 
-export default connect(mapStateToProps, {resourceAll, setActiveResource})(MistakePage)
+export default connect(mapStateToProps, {mLoad, resourceAll, setActiveResource})(MistakePage)

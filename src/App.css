@@ -47,6 +47,7 @@ body {
         width: 110px;
         display: block;
         margin: 0;
+        margin-left: 35px;
     }
     &_menu {
         right: 0;
@@ -85,7 +86,7 @@ body {
     border-right: 1px solid #f1f1f1;
 }
 .o_mistake__container {
-    padding: 20px 30px;
+    padding: 20px 0px;
     position: relative;
 }
 .o_sidebar {
@@ -111,7 +112,9 @@ body {
     padding: 0;
     display: table;
     width: 100%;
+    padding: 0 30px 0 27px;
     box-sizing: border-box;
+    border-left: 3px solid transparent;
     &__check {
         display: table-cell;
         vertical-align: top;
@@ -135,12 +138,8 @@ body {
     }
     &:nth-child(odd) {}
     &:hover {
-        .o_mistake__header {
-        background: #fefaf2;
-        }
-        .o_mistake__setting {
-        background: #fefaf2;
-        }
+        border-left: 3px solid $blue;
+        background: #f7fbff;
     }
     &__title {
         position: relative;
@@ -431,4 +430,6 @@ body {
     outline: none;
     border: 1px solid #dbdfe2;
     color: #424951;
+        width: 50%;
+    margin: 25px auto;
 }
