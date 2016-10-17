@@ -2,7 +2,9 @@ import React, { Component } from 'react'
 import ResourceAdd from './add_resource'
 import { connect } from 'react-redux'
 import  { resourceAll, deleteResource } from '../../../actions'
-import ResourceItem from './resource_item';
+import ResourceItem from './resource_item'
+import Loader from '../../ui/loader'
+
 
 class Resource extends Component {
   constructor(props) {
@@ -18,7 +20,7 @@ class Resource extends Component {
     var data = this.props.resources.map((elem, i) => 
       <ResourceItem 
         key={i} 
-        token={this.state.id}
+        token={this.props.login.token}
         item={i}  
         delete={this.props.deleteResource} 
         data={this.props.resources[i]} />
@@ -26,6 +28,7 @@ class Resource extends Component {
     return (
       <div className="o_container">
         <div className="o_resource">
+        <Loader active={true} />
         <header>
           <h1>Ресурсы</h1>
         </header>

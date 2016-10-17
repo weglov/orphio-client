@@ -242,11 +242,12 @@ body {
 }
 
 .o_resource {
-    padding-top: 60px;
+    padding-top: 80px;
     background: #fff;
+    min-height: 100vh;
     padding: 60px 20px;
     h1 {
-    font-size: 1rem;
+    font-size: 1.5rem;
     text-align: left;
     color: #000;
     font-weight: 600;
@@ -255,8 +256,9 @@ body {
 }
 
 .o_settings {
-    padding-top: 60px;
+    padding-top: 80px;
     background: #fff;
+    min-height: 100vh;
     h1 {
         font-size: 2rem;
         text-align: center;

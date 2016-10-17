@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 class ResourceItem extends Component {
   resourceDelete = (e, id) => {
     var token = this.props.token;
+    console.log(token);
     this.props.delete(e, id, token)
   }
   render() {
