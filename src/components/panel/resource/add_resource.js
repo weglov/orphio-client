@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
-import { post } from '../../../actions/Api.js'
-import Loader from '../../ui/loader'
+const token = window.localStorage.getItem('o__id')
 
 class ResourceAdd extends Component {
   constructor(props) {
@@ -8,7 +7,7 @@ class ResourceAdd extends Component {
     this.state = {
       name: '',
       source: '',
-      access: [],
+      access: this.props.data.id ? [this.props.data.id] : [token],
       throbber: false
     }
   }
@@ -17,21 +16,13 @@ class ResourceAdd extends Component {
         [e.target.name]: e.target.value
       });
   }
-  componentWillReceiveProps(next) {
-    this.setState({
-       access: [...this.state.access, next.data.id]  
-     });
-  }
   handleSubmit = (e) => {
      e.preventDefault();
      this.setState({throbber: true});
-     post('resource/', this.state, this.props.data.token)
-      .then(json => {
-        this.setState({throbber: false});
-      });
+     console.log(this.state);
+     this.props.add(this.state, this.props.data.token)
   }
   render() {
-    if (!this.state.throbber) {
      return (
       <div className='o_resource__add' onSubmit={this.handleSubmit}>
         <h2>Добавить ресурс</h2>
@@ -47,13 +38,7 @@ class ResourceAdd extends Component {
           <input type="submit" value="Добавить" />
         </form>
       </div>
-      ); 
-   } else {
-    return (
-     <Loader active={this.state.throbber} />
-     )
-   }
-    
+      );     
   }
 };
 

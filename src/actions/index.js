@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes'
-import {load, deleteData} from './Api.js'
+import {load, deleteData, post} from './Api.js'
 
 export function login(user) {
   return {
@@ -23,7 +23,7 @@ export function authorization(user) {
 }
 
 
-function resourceLoad(user, resource) {
+function _resourceLoad(user, resource) {
   return {
     type: types.LOAD_RESOURCE,
     user,
@@ -32,7 +32,7 @@ function resourceLoad(user, resource) {
   }
 }
 
-
+// SET ACTIVE ID
 export function setActiveResource(id) {
   return {
     type: types.ACTIVE_RESOURCE,
@@ -40,10 +40,11 @@ export function setActiveResource(id) {
   }
 }
 
-function deletR(id) {
+// DELETE
+function _deleteResource(id) {
   return {
-          type: types.DELETE_RESOURCE,
-          id
+    type: types.DELETE_RESOURCE,
+    id
   }
 }
 export function deleteResource(id, sid, token) {
@@ -51,18 +52,33 @@ export function deleteResource(id, sid, token) {
   return dispatch => {
     return deleteData(`resource/${sid}`, token)
       .then(json => {
-          dispatch(deletR(id))
+          dispatch(_deleteResource(id))
         })
   }
 }
 
+// LOAD
 export function resourceAll(user) {
     return dispatch => {
       return load(`resource/self/${user}`)
-        .then(json => dispatch(resourceLoad(user, json)))
+        .then(json => dispatch(_resourceLoad(user, json)))
         .then(json => {
           dispatch(setActiveResource(json.resource[0].id))
         })
+    }
+}
+
+// ADD
+function _resourceAdd(state, json) {
+  return {
+    type: types.ADD_RESOURCE,
+    state
+  }
+}
+export function resourceAdd(state, token) {
+    return dispatch => {
+      return post(`resource/`, state, token)
+        .then(json => dispatch(_resourceAdd(state, json)))
     }
 }
 

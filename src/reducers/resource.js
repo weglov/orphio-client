@@ -1,10 +1,10 @@
-import { LOAD_RESOURCE, ACTIVE_RESOURCE, DELETE_RESOURCE } from '../constants/ActionTypes'
+import { LOAD_RESOURCE, ACTIVE_RESOURCE, DELETE_RESOURCE, ADD_RESOURCE } from '../constants/ActionTypes'
 
 
 const initialState = {
     resources: [],
     active: '',
-    isFetching: false,
+    isFetching: true,
   	didInvalidate: false
   }
 
@@ -14,6 +14,7 @@ export default function resource(state = initialState, action) {
     case LOAD_RESOURCE:
       return {
           ...state,
+          isFetching: false,
           resources: action.resource
         }
     case ACTIVE_RESOURCE:
@@ -25,6 +26,12 @@ export default function resource(state = initialState, action) {
       return {
           ...state,
           resources: [...state.resources.slice(0, action.id), ...state.resources.slice(action.id + 1)]
+      }
+    case ADD_RESOURCE:
+      return {
+          ...state,
+          isFetching: false,
+          resources: [action.state, ...state.resources]
       }
     default:
       return state
