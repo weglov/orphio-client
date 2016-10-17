@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux'
 import login from './login'
 import resource from './resource'
-import m from './mistake'
+import mistake from './mistake'
 
 const rootReducer = combineReducers({
   login,
   resource,
-  m
+  mistake
 })
 
 export default rootReducer

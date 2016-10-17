@@ -98,10 +98,12 @@ function _mLoad(resource, m) {
 }
 
 export function mLoad(resource, offset, count, token) {
-    return dispatch => {
+    return (dispatch, getState) => {
       dispatch(_mRequest(resource))
       return load('m/?resource='+ resource +'&offset=' + offset + '&count=' + count, token)
-        .then(m => dispatch(_mLoad(resource, m)))
+        .then(m => {
+          dispatch(_mLoad(resource || getState().resource.active, m))
+        })
     }
 }
 

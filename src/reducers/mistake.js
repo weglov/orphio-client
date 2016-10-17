@@ -7,7 +7,7 @@ const initialState = {
   }
 
 
-export default function m(state = initialState, action) {
+export default function mistake(state = initialState, action) {
   switch (action.type) {
     case REQUEST_M:
       return {

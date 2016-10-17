@@ -11,7 +11,7 @@ class MistakePage extends Component {
   constructor(props, context){
     super();
     this.state = {
-      resource: 'ren.tv',
+      resource: 'e7e9cf1c-6b13-4378-b6df-5c967145259c',
       data: [],
       offset: 0,
       count: 25
@@ -19,7 +19,7 @@ class MistakePage extends Component {
   }
   componentWillMount() {
     this.props.resourceAll(window.localStorage.getItem('o__id'))
-    this.props.mLoad('ren.tv', this.state.offset, this.state.count, this.props.token).then(json => {
+    this.props.mLoad(this.props.active, this.state.offset, this.state.count, this.props.token).then(json => {
       this.setState({
         data: json.m 
       });
@@ -72,7 +72,7 @@ function mapStateToProps(state) {
   return { 
   resourceAll,
   mLoad,
-  data: state.m.m,
+  data: state.mistake.m,
   active: state.resource.active,
   resource: state.resource.resources,
   login: state.login.id
