@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ResourcesBlock from '../block/resources';
-import { load } from '../../../actions/Api';
 import io from 'socket.io-client';
 import { connect } from 'react-redux'
 import  { resourceAll, setActiveResource, mLoad } from '../../../actions'
@@ -11,7 +10,7 @@ class MistakePage extends Component {
   constructor(props, context){
     super();
     this.state = {
-      resource: 'e7e9cf1c-6b13-4378-b6df-5c967145259c',
+      resource: '',
       data: [],
       offset: 0,
       count: 25
@@ -19,36 +18,37 @@ class MistakePage extends Component {
   }
   componentWillMount() {
     this.props.resourceAll(window.localStorage.getItem('o__id'))
-    this.props.mLoad(this.props.active, this.state.offset, this.state.count, this.props.token).then(json => {
-      this.setState({
-        data: json.m 
-      });
-    })
     socket.on('m', (change) => {
       if (!change.old_val) {
         this.setState({
           data: [change.new_val, ...this.state.data]
         });
         console.log('1', change.new_val);
-      } else if (!change.new_val) {
-        console.log('2', change.old_val);
-      } else {
-        console.log('3', change.new_val);
       }
     });
   }
+  componentWillReceiveProps(next) {
+    if (next.active !== this.state.resource) {
+      this.props.mLoad(next.active, this.state.offset, this.state.count, this.props.token).then(() => {
+        this.setState({
+          resource: next.active,
+          data: this.props.m[next.active],
+          offset: this.state.count
+        });
+      })
+    }
+  }
   loadMore = (e) => {
-    let offset = this.state.data.length
-    let count = this.state.count
-    load('m/?resource=ren.tv&offset=' + offset + '&count=' + count, this.props.token).then((m) => {
-      m = this.state.data.concat(m);
-      this.setState({
-        data: m
-      });
-    });
+    this.props.mLoad(this.props.active, this.state.offset+this.state.count, this.state.count, this.props.token).then(() => {
+        this.setState({
+          data: this.props.m[this.state.resource],
+          offset: this.state.offset + this.state.count
+        });
+    })
   }
   render() {
-    var mistakes = this.state.data.map((nodes, i) => {
+    var data =    this.state.data;
+    var mistakes = data.map((nodes, i) => {
              return (<MistakeItem key={i} data={nodes} />);
         });
     return (
@@ -72,7 +72,7 @@ function mapStateToProps(state) {
   return { 
   resourceAll,
   mLoad,
-  data: state.mistake.m,
+  m: state.mistake.m,
   active: state.resource.active,
   resource: state.resource.resources,
   login: state.login.id

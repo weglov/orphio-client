@@ -15,3 +15,5 @@ export const DELETE_RESOURCE = 'DELETE_RESOURCE'
 
 export const LOAD_M = 'LOAD_M'
 export const REQUEST_M = 'REQUEST_M'
+export const LOADMORE_M = 'LOADMORE_M'
+export const SOCKET_M = 'SOCKET_M'

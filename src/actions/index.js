@@ -1,5 +1,7 @@
 import * as types from '../constants/ActionTypes'
 import {load, deleteData, post} from './Api.js'
+import union from 'lodash/union'
+
 
 export function login(user) {
   return {
@@ -102,8 +104,11 @@ export function mLoad(resource, offset, count, token) {
       dispatch(_mRequest(resource))
       return load('m/?resource='+ resource +'&offset=' + offset + '&count=' + count, token)
         .then(m => {
-          dispatch(_mLoad(resource || getState().resource.active, m))
+          dispatch(_mLoad(resource || getState().resource.active, getState().mistake.m[resource] ? union(getState().mistake.m[resource], m) : m))
         })
     }
 }
+
+
+// LOAD MORE
 
