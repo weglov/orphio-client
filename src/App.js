@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <div className="o_app">
         <Header data={this.props.login} actions={this.props.actions}/>
-        {this.props.children}
+          {this.props.children}
       </div>
     );
   }

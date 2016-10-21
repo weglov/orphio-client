@@ -55,8 +55,9 @@ class Login extends Component {
 	render() {
 		return (
 		<div className='o_login'>
-			<h2>Войти</h2>
-			<form className='o_login__form' onSubmit={this.handleSubmit}>
+			<div className='o_container'>
+			<h1>Вход</h1>
+			<form className='o_form o_login__form' onSubmit={this.handleSubmit}>
         	  	<div className='o_login__input'>
         	  		<input onChange={this.onInputChange} name="email" ref="email" type="email" placeholder='email'/>
         	  	</div>
@@ -65,6 +66,7 @@ class Login extends Component {
         	  	</div>
         	  	<button className='o_login__button' disabled={this.state.email ? false : true} type='submit'>Войти</button>
         	</form>
+        	</div>
         </div>
 		);
 	}

@@ -39,28 +39,22 @@ class Signup extends Component {
   	}
 	render() {
 		return (
-		<div className='o_login'>
-		<h2>Зарегистрироваться</h2>
-			<form className='o_login__form' onSubmit={this.handleSubmit}>
-        	  	<div className='o_login__input'>
-        	  		<input onChange={this.onInputChange} name="email" ref="email" type="email" placeholder='email'/>
-        	  	</div>
-        	  	<div className='o_login__input'>
-        	  		<input onChange={this.onInputChange} name="password" ref="password" type='password' placeholder='password'/>
-        	  	</div>
-        	  	<button className='o_login__button' disabled={this.state.email ? false : true} type='submit'>Войти</button>
-        	</form>
+		<div className='o_signup'>
+			<div className='o_container'>
+				<h1>Зарегистрироваться</h1>
+				<form className='o_form o_login__form' onSubmit={this.handleSubmit}>
+	        	  	<div className='o_login__input'>
+	        	  		<input onChange={this.onInputChange} name="email" ref="email" type="email" placeholder='email'/>
+	        	  	</div>
+	        	  	<div className='o_login__input'>
+	        	  		<input onChange={this.onInputChange} name="password" ref="password" type='password' placeholder='password'/>
+	        	  	</div>
+	        	  	<button className='o_login__button' disabled={this.state.email ? false : true} type='submit'>Войти</button>
+	        	</form>
+        	</div>
         </div>
 		);
 	}
 };
 
 export default Signup;
-
-
-// load(e).then((stories) => {
-//             this.setState({
-//                 data: stories.data[0],
-//                 date: moment(stories.data[0].created*1000).format('LT, LL')
-//             });
-//         });
