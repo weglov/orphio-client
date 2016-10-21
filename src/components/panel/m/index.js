@@ -4,6 +4,8 @@ import io from 'socket.io-client';
 import { connect } from 'react-redux'
 import  { resourceAll, setActiveResource, mLoad } from '../../../actions'
 import MistakeItem from "./mistake_item";
+import moment from 'moment'
+import Loader from '../../ui/loader'
 const socket = io('http://78.155.218.217:888/');
 
 class MistakePage extends Component {
@@ -29,27 +31,28 @@ class MistakePage extends Component {
   }
   componentWillReceiveProps(next) {
     if (next.active !== this.state.resource) {
+      this.setState({ resource: next.active });
       this.props.mLoad(next.active, this.state.offset, this.state.count, this.props.token).then(() => {
         this.setState({
-          resource: next.active,
           data: this.props.m[next.active],
-          offset: this.state.count
         });
       })
     }
   }
   loadMore = (e) => {
-    this.props.mLoad(this.props.active, this.state.offset+this.state.count, this.state.count, this.props.token).then(() => {
+    var offset = this.state.offset || this.state.count
+    this.props.mLoad(this.props.active, offset, this.state.count, this.props.token).then(() => {
         this.setState({
           data: this.props.m[this.state.resource],
-          offset: this.state.offset + this.state.count
+          offset: offset + this.state.count
         });
     })
   }
   render() {
-    var data =    this.state.data;
-    var mistakes = data.map((nodes, i) => {
-             return (<MistakeItem key={i} data={nodes} />);
+    var data = this.state.data;
+        var mistakes = data.map((nodes, i) => {
+             var time = moment(nodes.timestamp).fromNow()
+             return (<MistakeItem key={i} data={nodes} time={time}/>);
         });
     return (
     <div className='o_container'>  
@@ -58,6 +61,7 @@ class MistakePage extends Component {
       </div>
       <div className="o_panel__container">
         <div className="o_mistake__container">
+          <Loader active={this.props.throbbler} />
           {mistakes}
           <button className="o_loadmore" onClick={this.loadMore}>Загрузить еще</button>
         </div>
@@ -73,6 +77,7 @@ function mapStateToProps(state) {
   resourceAll,
   mLoad,
   m: state.mistake.m,
+  throbbler: state.mistake.isFetching,
   active: state.resource.active,
   resource: state.resource.resources,
   login: state.login.id

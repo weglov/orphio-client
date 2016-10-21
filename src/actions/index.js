@@ -98,13 +98,25 @@ function _mLoad(resource, m) {
     m
   }
 }
+function _mLoadMore(resource, m) {
+  return {
+    type: types.LOADMORE_M,
+    resource,
+    m
+  }
+}
 
 export function mLoad(resource, offset, count, token) {
     return (dispatch, getState) => {
       dispatch(_mRequest(resource))
       return load('m/?resource='+ resource +'&offset=' + offset + '&count=' + count, token)
         .then(m => {
-          dispatch(_mLoad(resource || getState().resource.active, getState().mistake.m[resource] ? union(getState().mistake.m[resource], m) : m))
+          if (offset) {
+            dispatch(_mLoadMore(resource || getState().resource.active, getState().mistake.m[resource] ? union(getState().mistake.m[resource], m) : m))
+          } else {
+            dispatch(_mLoad(resource || getState().resource.active, m))
+          }
+          
         })
     }
 }

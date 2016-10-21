@@ -1,27 +1,18 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router'
-import moment from 'moment'
 
 class MistakeItem extends Component {
   constructor(props) {
     super(props);
     this.state = {
       check: this.props.check,
-      date: moment(this.props.data.timestamp).fromNow()
+      date: this.props.time
     }
   }
   onChange = (e) => {
     this.setState({
       check: true
     });
-  }
-  componentWillMount() {
-    // 3 min for update
-    setInterval(() => { 
-      this.setState({
-        date: moment(this.props.data.timestamp).fromNow()
-      });
-    }, 180000);
   }
   render() {
     var data = this.props.data;
