@@ -1,0 +1,29 @@
+.o_loaderBar {
+	    width: 0%;
+    transition: width .8s ease-out, height .8s  linear, opacity .4s  ease-out;
+    opacity: 0;
+    height: 3px;
+    position: absolute;
+    background: #29d;
+    box-shadow: 0 0 10px #29d,0 0 5px #29d;
+}
+.o_loaderBar.process {
+	width: 55%;
+	opacity: 1;
+}
+.o_loaderBar.active {
+	width: 100%;
+	opacity: 1;
+}
+.o_loaderBar.to-first {
+    width: 100%;
+    opacity: 0;
+}
+
+.LoaderBar {
+    position: relative;
+    display: block;
+    margin-top: 13px;
+    height: 10px;
+    overflow: hidden;
+}

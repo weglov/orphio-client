@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     return (
       <div className="o_app">
-        <Header data={this.props.login} actions={this.props.actions}/>
+        <Header data={this.props.login} loader={this.props.loader} actions={this.props.actions}/>
           {this.props.children}
       </div>
     );
@@ -22,7 +22,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
   return {
-    login: state.login
+    login: state.login,
+    loader:  state.resource.isFetching || state.mistake.isFetching
   }
 }
 

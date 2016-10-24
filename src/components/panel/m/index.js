@@ -5,7 +5,6 @@ import { connect } from 'react-redux'
 import  { resourceAll, setActiveResource, mLoad } from '../../../actions'
 import MistakeItem from "./mistake_item";
 import moment from 'moment'
-import Loader from '../../ui/loader'
 const socket = io('http://78.155.218.217:888/');
 
 class MistakePage extends Component {
@@ -61,7 +60,6 @@ class MistakePage extends Component {
       </div>
       <div className="o_panel__container">
         <div className="o_mistake__container">
-          <Loader active={this.props.throbbler} />
           {mistakes}
           <button className="o_loadmore" onClick={this.loadMore}>Загрузить еще</button>
         </div>
@@ -77,7 +75,6 @@ function mapStateToProps(state) {
   resourceAll,
   mLoad,
   m: state.mistake.m,
-  throbbler: state.mistake.isFetching,
   active: state.resource.active,
   resource: state.resource.resources,
   login: state.login.id
