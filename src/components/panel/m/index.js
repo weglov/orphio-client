@@ -20,7 +20,7 @@ class MistakePage extends Component {
   componentWillMount() {
     this.props.resourceAll(window.localStorage.getItem('o__id'))
     socket.on('m', (change) => {
-      if (!change.old_val) {
+      if (!change.old_val && change.new_val.resource === this.state.resource) {
         this.setState({
           data: [change.new_val, ...this.state.data]
         });
@@ -30,6 +30,7 @@ class MistakePage extends Component {
   }
   componentWillReceiveProps(next) {
     if (next.active !== this.state.resource) {
+      socket.emit('enterRoom', this.props.resource)
       this.setState({ resource: next.active });
       this.props.mLoad(next.active, this.state.offset, this.state.count, this.props.token).then(() => {
         this.setState({

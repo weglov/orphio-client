@@ -15,7 +15,6 @@ export default function mistake(state = initialState, action) {
           isFetching: true,
         }
     case LOAD_M:
-    console.log(action.m)
       return {
           m: {...state.m, [action.resource]: action.m},
           isFetching: false

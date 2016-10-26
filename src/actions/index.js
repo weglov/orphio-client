@@ -49,6 +49,8 @@ function _deleteResource(id) {
     id
   }
 }
+
+
 export function deleteResource(id, sid, token) {
   console.log(arguments);
   return dispatch => {

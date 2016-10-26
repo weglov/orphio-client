@@ -8,7 +8,6 @@ class LoaderBar extends Component {
      }
   }
   componentWillReceiveProps(nextProps) {
-    console.info(nextProps.active)
     if (nextProps.active) {
       this.setState({ loader: 'process' });
     } else {

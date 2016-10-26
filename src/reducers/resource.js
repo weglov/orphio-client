@@ -4,6 +4,7 @@ import { LOAD_RESOURCE, ACTIVE_RESOURCE, DELETE_RESOURCE, ADD_RESOURCE } from '.
 const initialState = {
     resources: [],
     active: '',
+    stats: {},
     isFetching: true,
   	didInvalidate: false
   }
