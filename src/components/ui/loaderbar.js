@@ -15,10 +15,10 @@ class LoaderBar extends Component {
       this.setState({ loader: 'active' });
       setTimeout(() => {
         this.setState({loader: 'to-first'})
-      }, 1000);
+      }, 500);
       setTimeout(() => {
         this.setState({loader: ''})
-      }, 2000);
+      }, 1000);
     }
   }
   render() {

@@ -4,8 +4,9 @@
     opacity: 0;
     height: 3px;
     position: absolute;
-    background: #29d;
-    box-shadow: 0 0 10px #29d,0 0 5px #29d;
+    /*background: 29d;*/
+    background: #5e9af5; 
+    /*box-shadow: 0 0 10px #5e9af5,0 0 5px #5e9af5;*/
 }
 .o_loaderBar.process {
 	width: 55%;
