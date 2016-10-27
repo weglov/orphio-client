@@ -4,6 +4,8 @@ import io from 'socket.io-client';
 import { connect } from 'react-redux'
 import  { resourceAll, setActiveResource, mLoad } from '../../../actions'
 import MistakeItem from "./mistake_item";
+import findWhere from 'lodash/find'
+
 
 const socket = io('http://78.155.218.217:888/');
 
@@ -53,6 +55,9 @@ class MistakePage extends Component {
         var mistakes = data.map((nodes, i) => {
              return (<MistakeItem key={i} data={nodes}/>);
         });
+        var size = findWhere(this.props.resource, {'id': this.state.resource});
+        size = size ? size.size : size;
+        var loadmore = size > this.state.data.length;
     return (
     <div className='o_container'>  
       <div className="o_sidebar">  
@@ -61,7 +66,7 @@ class MistakePage extends Component {
       <div className="o_panel__container">
         <div className="o_mistake__container">
           {mistakes}
-          <button className="o_loadmore" onClick={this.loadMore}>Загрузить еще</button>
+          {loadmore ? <button className="o_loadmore" onClick={this.loadMore}>Загрузить еще</button> : null }
         </div>
       </div>
     </div>
