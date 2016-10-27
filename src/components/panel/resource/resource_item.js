@@ -17,7 +17,7 @@ class ResourceItem extends Component {
         <div className="o_item__content">
           <div className="o_item__title">{data.name}</div>
           <div className="o_item__url">{data.source}</div>
-          <input type="text" value={"http://78.155.218.217:888/v1/code/" + data.id + ".js"} />
+          <textarea type="text" rows="2" cols="55" defaultValue={'<script src="http://78.155.218.217:888/v1/code/' + data.id + '.js"></script>'} />
         </div>
         <div className="o_item__footer">
           <div className="o_item__fav">

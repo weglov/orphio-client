@@ -4,7 +4,7 @@ import io from 'socket.io-client';
 import { connect } from 'react-redux'
 import  { resourceAll, setActiveResource, mLoad } from '../../../actions'
 import MistakeItem from "./mistake_item";
-import moment from 'moment'
+
 const socket = io('http://78.155.218.217:888/');
 
 class MistakePage extends Component {
@@ -49,10 +49,9 @@ class MistakePage extends Component {
     })
   }
   render() {
-    var data = this.state.data;
+        var data = this.state.data;
         var mistakes = data.map((nodes, i) => {
-             var time = moment(nodes.timestamp).fromNow()
-             return (<MistakeItem key={i} data={nodes} time={time}/>);
+             return (<MistakeItem key={i} data={nodes}/>);
         });
     return (
     <div className='o_container'>  
