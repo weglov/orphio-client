@@ -451,6 +451,11 @@ body {
     }
     &__input {
         margin: 0px 0;
+        &.false {
+            input {
+                border: 1px solid red;
+            }
+        }
     }
     &__button {
         width: auto;
@@ -464,5 +469,22 @@ body {
         box-sizing: border-box;
         padding: 15px;
         font-size: 1rem;
+    }
+    &__error, &__success {
+        border: 1px solid red;
+        padding: 15px;
+        border-radius: 2px;
+        box-sizing: border-box;
+        margin: 10px 0;
+        color: red;
+    }
+    &__success {
+        border: 1px solid green;
+        color: green;
+        a {
+            color: $blue;
+            display: inline-block;
+            padding: 5px 0 0;
+        }
     }
 }
