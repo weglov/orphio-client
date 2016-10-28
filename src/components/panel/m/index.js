@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ResourcesBlock from '../block/resources';
 import io from 'socket.io-client';
+import { browserHistory } from 'react-router';
 import { connect } from 'react-redux'
 import  { resourceAll, setActiveResource, mLoad } from '../../../actions'
 import MistakeItem from "./mistake_item";
@@ -19,8 +20,12 @@ class MistakePage extends Component {
       count: 25
     };
   }
-  componentWillMount() {
-    this.props.resourceAll(window.localStorage.getItem('o__id'))
+  componentDidMount() {
+    this.props.resourceAll(window.localStorage.getItem('o__id')).then((e) => {
+      if(!this.props.resource.length) {
+        browserHistory.push('/panel/resource/add');
+      }
+    })
     socket.on('m', (change) => {
       if (!change.old_val && change.new_val.resource === this.state.resource) {
         this.setState({

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import { load } from '../../actions/Api';
 import { connect } from 'react-redux'
-import  { authorization } from '../../actions'
+import  { authorization, resourceAll } from '../../actions'
 
 class Panel extends Component {
   constructor() {
@@ -13,12 +13,18 @@ class Panel extends Component {
    }
   }
   static onEnter(nextState, replace) {
+    console.log(nextState);
     var token = window.localStorage.getItem('o__token');
     if (!token) {
       replace('/login')
-    }
+    } 
   }
   componentDidMount() {
+    this.props.resourceAll(window.localStorage.getItem('o__id')).then((e) => {
+      if(!this.props.resource.resources.length) {
+        browserHistory.push('/panel/resource/add');
+      }
+    })
     load('users/' + this.state.id, this.state.token)
       .then(function(user) {
           if (user.status === false) {
@@ -48,10 +54,12 @@ class Panel extends Component {
 
 function mapStateToProps(state) {
   return { 
-    authorization
+    resource: state.resource,
+    authorization,
+    resourceAll
   }
 }
 
 
 
-export default connect(mapStateToProps, {authorization})(Panel)
+export default connect(mapStateToProps, {authorization, resourceAll})(Panel)

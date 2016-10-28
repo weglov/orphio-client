@@ -24,7 +24,7 @@ class Header extends Component {
     return (
         <div className="o__header">
         	<div className="o_container">
-	          	<Link to='/panel' className="o__header--logo"></Link>
+	          	<Link to='/' className="o__header--logo"></Link>
 	          	<div className="o__header_menu">
 	          		{login || <Link to='/login'>Войти</Link>}
 	      			  {login || <Link to='/signup'>Регистрация</Link>}

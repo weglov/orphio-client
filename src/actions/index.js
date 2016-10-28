@@ -67,7 +67,10 @@ export function resourceAll(user) {
       return load(`resource/self/${user}`)
         .then(json => dispatch(_resourceLoad(user, json)))
         .then(json => {
-          dispatch(setActiveResource(json.resource[0].id))
+          return json.resource.length ? dispatch(setActiveResource(json.resource[0].id)) : json;
+        })
+        .then(json => {
+          return json
         })
     }
 }
@@ -82,7 +85,9 @@ function _resourceAdd(state, json) {
 export function resourceAdd(state, token) {
     return dispatch => {
       return post(`resource/`, state, token)
-        .then(json => dispatch(_resourceAdd(state, json)))
+        .then(json => {
+          return dispatch(_resourceAdd(state, json))
+        })
     }
 }
 

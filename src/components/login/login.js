@@ -41,7 +41,8 @@ class Login extends Component {
 			// Выдача токенов если есть такой парень
 			post('login', this.state).then((user) => {
 				    	return user
-				    }).then((user) => {
+				    })
+					.then((user) => {
 				    	if (user.code === 404 || user.code === 401) {
 				    		// если нет такого пользователя
 				    		return Promise.reject();
@@ -52,7 +53,8 @@ class Login extends Component {
 			    	this.props.login(user)
 			    	browserHistory.push('/panel');
 			    	return user;
-			    	}).catch((user) => {
+			    	})
+			    	.catch((user) => {
 			    		this.messageError('Пароль или логин не верны')
 			    		this.props.logout(user)
 			    	});

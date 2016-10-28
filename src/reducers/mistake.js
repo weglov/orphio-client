@@ -3,7 +3,7 @@ import merge from 'lodash/merge'
 
 const initialState = {
     m: {},
-    isFetching: true
+    isFetching: false
   }
 
 

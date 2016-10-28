@@ -488,3 +488,12 @@ body {
         }
     }
 }
+.o_add {
+    h1 {
+        text-align: center;
+    }
+    .o_resource__add {
+        margin: 30px auto;
+        display: block;
+    }
+}
