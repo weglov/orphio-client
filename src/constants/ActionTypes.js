@@ -10,7 +10,7 @@ export const LOAD_RESOURCE = 'LOAD_RESOURCE'
 export const ADD_RESOURCE = 'ADD_RESOURCE'
 export const ACTIVE_RESOURCE = 'ACTIVE_RESOURCE'
 export const DELETE_RESOURCE = 'DELETE_RESOURCE'
-
+export const ADD_ACCSESS = 'ADD_ACCSESS'
 // mistake 
 
 export const LOAD_M = 'LOAD_M'

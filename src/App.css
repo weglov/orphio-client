@@ -274,7 +274,7 @@ body {
 
 .o_resource__add {
     display: inline-block;
-    height: 188px;
+    min-height: 188px;
     box-sizing: border-box;
     padding: 10px 20px;
     margin: 10px;
@@ -299,7 +299,7 @@ body {
 .o_resource {
     .o_item {
         display: inline-block;
-        height: 188px;
+        min-height: 188px;
         box-sizing: border-box;
         padding: 10px 20px;
         margin: 10px;
@@ -310,6 +310,21 @@ body {
         position: relative;
         box-sizing: border-box;
         font-size: 16px;
+        textarea {
+            display: block;
+        }
+        &__access {
+            padding: 10px;
+            box-sizing: border-box;
+            h3 {
+                font-weight: bold;
+                margin: 2px 0;
+            }
+            span {
+                display: block;
+                padding: 3px 0;
+            }
+        }
         &__header {
             color: #000;
             height: 40px;
@@ -323,7 +338,6 @@ body {
             }
         }
         &__content {
-            height: 80px;
             display: block;
             position: relative;
         }
@@ -336,7 +350,6 @@ body {
             color: #333;
         }
         &__footer {
-            position: absolute;
             bottom: 0;
             height: 30px;
             width: 100%;

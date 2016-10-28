@@ -1,7 +1,7 @@
 import * as types from '../constants/ActionTypes'
-import {load, deleteData, post} from './Api.js'
+import {load, deleteData, post, put} from './Api.js'
 import union from 'lodash/union'
-
+const token = window.localStorage.getItem('o__token')
 
 export function login(user) {
   return {
@@ -49,10 +49,24 @@ function _deleteResource(id) {
     id
   }
 }
+// addAccsess
+function _addAccsess(id, sid) {
+  return {
+    type: types.ADD_ACCSESS,
+    id
+  }
+}
 
-
+export function addAccsess(id, object) {
+  return dispatch => {
+    return put(`resource/${id}`, object, token)
+      .then(json => {
+          console.log(id, object, token);
+          return dispatch(_addAccsess(json, id))
+        })
+  }
+}
 export function deleteResource(id, sid, token) {
-  console.log(arguments);
   return dispatch => {
     return deleteData(`resource/${sid}`, token)
       .then(json => {

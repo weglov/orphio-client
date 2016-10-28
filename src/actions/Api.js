@@ -33,6 +33,22 @@ export function post(url, object, token) {
         return response.json();
     })
 }
+export function put(url, object, token) {
+    return fetch(Config.API + `${url}`, {
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'x-api-token': token
+        },
+        body: JSON.stringify(object)
+    }).then(response => {
+        if (response.code >= 400) {
+            throw new Error("Bad response from server");
+        }
+        return response.json();
+    })
+}
 
 export function deleteData(url, token) {
   return fetch(Config.API + `${url}`, {

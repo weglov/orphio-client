@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import ResourceAdd from './add_resource'
 import { connect } from 'react-redux'
-import  { resourceAll, deleteResource, resourceAdd } from '../../../actions'
+import  { resourceAll, deleteResource, resourceAdd, addAccsess } from '../../../actions'
 import ResourceItem from './resource_item'
 import Loader from '../../ui/loader'
 
@@ -22,6 +22,7 @@ class Resource extends Component {
         key={i} 
         token={this.props.login.token}
         item={i}  
+        add={this.props.addAccsess}
         delete={this.props.deleteResource} 
         data={this.props.resources[i]} />
     )
@@ -48,6 +49,7 @@ function mapStateToProps(state) {
     resources: state.resource.resources,
     resourceAll,
     resourceAdd,
+    addAccsess,
     throbber: state.resource.isFetching,
     login: state.login
   }
@@ -55,4 +57,4 @@ function mapStateToProps(state) {
 
 
 
-export default connect(mapStateToProps, {resourceAll, deleteResource, resourceAdd})(Resource)
+export default connect(mapStateToProps, {resourceAll, deleteResource, resourceAdd, addAccsess})(Resource)
